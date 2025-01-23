@@ -14,6 +14,7 @@ def pal(x):
     return x == x[::-1]
 
 def proc(data):
+    """Process data passed in the `lst` argument."""
     a = []
     b = []
 
