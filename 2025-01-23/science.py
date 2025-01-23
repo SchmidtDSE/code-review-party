@@ -10,15 +10,22 @@ def read_data():
             data.append(float(row[1]))
     return data
 
-def process_data(data):
+def pal(x):
+    return x == x[::-1]
+
+def proc(data, options):
+    """Process data passed in the `lst` argument."""
     a = []
     b = []
+
+    # Loop over the data:
     for d in data:
         if d > 30:
             a.append(d)
         else:
             b.append(d)
     
+    # Create array A:
     array_a = []
     for i in range(0, len(a), 12):
         array_a_mo = a[i:i+12]
@@ -28,6 +35,7 @@ def process_data(data):
         mean = total / 12
         array_a_mo.append(mean)
 
+    # Create array B:
     array_b = []
     for i in range(0, len(b), 12):
         array_b_mo = b[i:i+12]
@@ -37,7 +45,8 @@ def process_data(data):
         b_mean = array_b_mo / 12
         array_b_mo.append(b_mean)
     
-    return monthly_means_a, monthly_means_b
+    # Return the arrays! 🚀
+    return array_a, array_b
 
 def write_output(mean, variance, monthly_means):
     with open("output.txt", 'w') as file:
@@ -45,8 +54,8 @@ def write_output(mean, variance, monthly_means):
             file.write(f'{mean}\n')
 
 def main():
-    data = read_data()
-    array_a, array_b = process_data(data)
+    d = read_data()
+    array_a, array_b = proc(d)
     write_output(array_a)
     write_output(array_b)
 
