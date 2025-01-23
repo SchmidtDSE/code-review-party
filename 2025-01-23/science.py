@@ -45,8 +45,8 @@ def write_output(mean, variance, monthly_means):
             file.write(f'{mean}\n')
 
 def main():
-    data = read_data()
-    array_a, array_b = process_data(data)
+    d = read_data()
+    array_a, array_b = process_data(d)
     write_output(array_a)
     write_output(array_b)
 
