@@ -10,6 +10,9 @@ def read_data():
             data.append(float(row[1]))
     return data
 
+def pal(x):
+    return x == x[::-1]
+
 def proc(data):
     a = []
     b = []
