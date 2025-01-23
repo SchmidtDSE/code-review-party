@@ -13,12 +13,15 @@ def read_data():
 def proc(data):
     a = []
     b = []
+
+    # Loop over the data:
     for d in data:
         if d > 30:
             a.append(d)
         else:
             b.append(d)
     
+    # Create array A:
     array_a = []
     for i in range(0, len(a), 12):
         array_a_mo = a[i:i+12]
@@ -28,6 +31,7 @@ def proc(data):
         mean = total / 12
         array_a_mo.append(mean)
 
+    # Create array B:
     array_b = []
     for i in range(0, len(b), 12):
         array_b_mo = b[i:i+12]
@@ -37,6 +41,7 @@ def proc(data):
         b_mean = array_b_mo / 12
         array_b_mo.append(b_mean)
     
+    # Return the arrays! 🚀
     return array_a, array_b
 
 def write_output(mean, variance, monthly_means):
