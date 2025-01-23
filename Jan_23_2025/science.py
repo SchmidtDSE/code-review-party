@@ -1,7 +1,6 @@
 import csv
-
-# Hardcoded file path and magic numbers
-output_file = 'output.txt'
+import os
+import datetime
 
 def read_data():
     data = []
@@ -12,7 +11,6 @@ def read_data():
     return data
 
 def process_data(data):
-    # Ambiguous variable names and repeated monthly mean calculation
     a = []
     b = []
     for d in data:
@@ -21,65 +19,36 @@ def process_data(data):
         else:
             b.append(d)
     
-    # Calculate monthly mean for a
-    monthly_means_a = []
+    array_a = []
     for i in range(0, len(a), 12):
-        month_data = a[i:i+12]
-        total = 0
-        for d in month_data:
+        array_a_mo = a[i:i+12]
+        total_a = 0
+        for d in array_a_mo:
             total += d
         mean = total / 12
-        monthly_means_a.append(mean)
-    
-    # Calculate monthly mean for b
-    monthly_means_b = []
+        array_a_mo.append(mean)
+
+    array_b = []
     for i in range(0, len(b), 12):
-        month_data = b[i:i+12]
-        total = 0
-        for d in month_data:
+        array_b_mo = b[i:i+12]
+        total_b = 0
+        for d in array_b_mo:
             total += d
-        mean = total / 12
-        monthly_means_b.append(mean)
+        b_mean = array_b_mo / 12
+        array_b_mo.append(b_mean)
     
     return monthly_means_a, monthly_means_b
 
-def calculate_statistics(data):
-    # Repeated code and magic number 12
-    total = 0
-    for d in data:
-        total += d
-    mean = total / len(data)
-    
-    total = 0
-    for d in data:
-        total += (d - mean) ** 2
-    variance = total / len(data)
-    
-    # Calculate monthly mean for data
-    monthly_means = []
-    for i in range(0, len(data), 12):
-        month_data = data[i:i+12]
-        total = 0
-        for d in month_data:
-            total += d
-        mean = total / 12
-        monthly_means.append(mean)
-    
-    return mean, variance, monthly_means
-
 def write_output(mean, variance, monthly_means):
-    with open(output_file, 'w') as file:
-        file.write(f'Mean: {mean}\n')
-        file.write(f'Variance: {variance}\n')
-        file.write('Monthly Means:\n')
+    with open("output.txt", 'w') as file:
         for mean in monthly_means:
             file.write(f'{mean}\n')
 
 def main():
     data = read_data()
-    monthly_means_a, monthly_means_b = process_data(data)
-    mean, variance, monthly_means = calculate_statistics(data)
-    write_output(mean, variance, monthly_means)
+    array_a, array_b = process_data(data)
+    write_output(array_a)
+    write_output(array_b)
 
 if __name__ == '__main__':
     main()
