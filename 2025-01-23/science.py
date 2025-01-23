@@ -13,7 +13,7 @@ def read_data():
 def pal(x):
     return x == x[::-1]
 
-def proc(data):
+def proc(data, options):
     """Process data passed in the `lst` argument."""
     a = []
     b = []
