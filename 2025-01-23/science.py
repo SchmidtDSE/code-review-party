@@ -37,7 +37,7 @@ def process_data(data):
         b_mean = array_b_mo / 12
         array_b_mo.append(b_mean)
     
-    return monthly_means_a, monthly_means_b
+    return array_a, array_b
 
 def write_output(mean, variance, monthly_means):
     with open("output.txt", 'w') as file:
