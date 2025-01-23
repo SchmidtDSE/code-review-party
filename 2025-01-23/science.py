@@ -10,7 +10,7 @@ def read_data():
             data.append(float(row[1]))
     return data
 
-def process_data(data):
+def proc(data):
     a = []
     b = []
     for d in data:
@@ -46,7 +46,7 @@ def write_output(mean, variance, monthly_means):
 
 def main():
     d = read_data()
-    array_a, array_b = process_data(d)
+    array_a, array_b = proc(d)
     write_output(array_a)
     write_output(array_b)
 
